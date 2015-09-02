@@ -1,7 +1,7 @@
 var batch = require('./lib/batch.js');
 var fs = require('fs');
 var lines = fs.readFileSync('websites.csv', 'utf8').trim().split('\r\n');
-var prefix = 'http://localhost:1337/?url=http://';
+var prefix = 'http://localhost:1337/api/v2/scan?url=http://';
 var errorCount = 0;
 
 console.log(lines.length + ' to crawl');
@@ -18,10 +18,10 @@ var websites = lines.map(function (line) {
 });
 
 var tests = [
-    'browserbite',
+    // 'browserbite',
     'browserDetection',
     'cssprefixes',
-    'inputTypes',
+    // 'inputTypes',
     //'responsive',
     //'touch',
     'edge',
@@ -49,6 +49,7 @@ function formater(data) {
             return acum;
         }, []).join(', ');
         
+      content += '\r';
         content += '\n';
     } catch (err) {        
         content = '';
